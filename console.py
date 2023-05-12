@@ -125,9 +125,29 @@ class HBNBCommand(cmd.Cmd):
         attr_name = args[2]
         attr_value = args[3]
         obj = storage.all()[key]
-        """
-        TO BE CONTINUED...
-        """
+        if hasattr(obj, attr_name):
+            attr_type = type(getattr(obj, attr_name))
+            try:
+                casted_value = attr_type(attr_value)
+                setattr(obj, attr_name, casted_value)
+                obj.save()
+            except ValueError:
+                print("** value missing **")
+
+    def do_count(self, line):
+        """retrieve the number of instances of a class"""
+        if not line:
+            print("** class name missing **")
+            return
+        args = line.split(' ')
+        if args[0] not in HBNBCommand.v_classes:
+            print("** class doesn't exist **")
+            return
+        count = 0
+        for obj in storage.all().values():
+            if isinstance(obj, eval(args[0])):
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':
