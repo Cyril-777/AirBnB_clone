@@ -93,10 +93,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 result = [str(obj) for obj in storage.all().values()
                         if isinstance(obj, eval(args[0]))]
-                print(result)
+                print(', '.join(result))
         else:
             result = [str(obj) for obj in storage.all().values()]
-            print(result)
+            print(', '.join(result))
 
 
     def do_update(self, line):
