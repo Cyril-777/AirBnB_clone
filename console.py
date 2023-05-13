@@ -148,6 +148,36 @@ class HBNBCommand(cmd.Cmd):
             if isinstance(obj, eval(args[0])):
                 count += 1
         print(count)
+        
+    def default(self, line):
+        """Default method to handle advanced commands"""
+        args = line.split('.')
+        if len(args) < 2:
+            print("** no instance found **")
+            return
+        class_name = args[0]
+        if class_name not in HBNBCommand.v_classes:
+            print("** no instance found **")
+            return
+        command = args[1].split('(')[0]
+        if command == "all":
+            self.do_all(class_name)
+        elif command == "count":
+            self.do_count(class_name)
+        elif command == "show":
+            instance_id = args[1].split('"')[1]
+            self.do_show("{} {}".format(class_name, instance_id))
+        elif command == "destroy":
+            instance_id = args[1].split('"')[1]
+            self.do_destroy("{} {}".format(class_name, instance_id))
+        elif command == "update":
+            update_args = args[1].split('(')[1].split(')')[0].replace('"', '').split(', ')
+            instance_id = update_args[0]
+            attr_name = update_args[1]
+            attr_value = update_args[2]
+            self.do_update("{} {} {} {}".format(class_name, instance_id, attr_name, attr_value))
+        else:
+            print("** no instance found **")
 
 
 if __name__ == '__main__':
