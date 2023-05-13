@@ -5,4 +5,5 @@ from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
+    """subclass to define the Amenity and its attributes"""
     name = ""
