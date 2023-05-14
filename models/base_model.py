@@ -1,20 +1,22 @@
 #!/usr/bin/python3
-"""BaseModel parent class that contains all common attributes/methods for other classes"""
+"""BaseModel parent class that contains all
+common attributes/methods for other classes"""
 
 import uuid
 from datetime import datetime
 import models
+
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
         """Class constructor that receives all the arguments and sets
         the 'created_at', 'updated_at', 'deleted_at' and 'id' attributes"""
         if kwargs:
-            for key, value in kwargs.items():
+            for key, v in kwargs.items():
                 if key != '__class__':
                     if key == 'created_at' or key == 'updated_at':
-                        value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                    setattr(self, key, value)
+                        v = datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f')
+                    setattr(self, key, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
