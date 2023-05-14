@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNB Command line interpreter"""
     prompt = "(hbnb) "
     v_classes = ["BaseModel", "User", "Place", "State\
-", "City", "Amenity", "Review"] #valid classes
+", "City", "Amenity", "Review"]  # valid classes
 
     def do_quit(self, args):
         """Quit command to exit the console"""
@@ -44,7 +44,6 @@ class HBNBCommand(cmd.Cmd):
             new_ins = eval(line)()
             new_ins.save()
             print(new_ins.id)
-
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
@@ -98,7 +97,6 @@ class HBNBCommand(cmd.Cmd):
             result = [str(obj) for obj in storage.all().values()]
             print(', '.join(result))
 
-
     def do_update(self, line):
         """Updates an instance based on the class name and id"""
         if not line:
@@ -150,37 +148,36 @@ class HBNBCommand(cmd.Cmd):
             if isinstance(obj, eval(args[0])):
                 count += 1
         print(count)
-        
+
     def default(self, line):
         """Default method to handle advanced commands"""
         args = line.split('.')
         if len(args) < 2:
             print("** no instance found **")
             return
-        class_name = args[0]
-        if class_name not in HBNBCommand.v_classes:
+        cn = args[0]  # class name
+        if cn not in HBNBCommand.v_classes:
             print("** no instance found **")
             return
         command = args[1].split('(')[0]
         if command == "all":
-            self.do_all(class_name)
+            self.do_all(cn)
         elif command == "count":
-            self.do_count(class_name)
+            self.do_count(cn)
         elif command == "show":
-            instance_id = args[1].split('"')[1]
-            self.do_show("{} {}".format(class_name, instance_id))
+            ins_id = args[1].split('"')[1]
+            self.do_show("{} {}".format(cn, ins_id))
         elif command == "destroy":
-            instance_id = args[1].split('"')[1]
-            self.do_destroy("{} {}".format(class_name, instance_id))
+            ins_id = args[1].split('"')[1]
+            self.do_destroy("{} {}".format(cn, ins_id))
         elif command == "update":
             update_args = args[1].split('(')[1].split(')')[0].replace('"', '').split(', ')
-            instance_id = update_args[0]
-            attr_name = update_args[1]
-            attr_value = update_args[2]
-            self.do_update("{} {} {} {}".format(class_name, instance_id, attr_name, attr_value))
+            ins_id = update_args[0]
+            att_name = update_args[1]
+            att_value = update_args[2]
+            self.do_update("{} {} {} {}".format(cn, ins_id, att_name, att_value))
         else:
             print("** no instance found **")
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
