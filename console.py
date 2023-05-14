@@ -128,6 +128,8 @@ class HBNBCommand(cmd.Cmd):
         if hasattr(obj, attr_name):
             attr_type = type(getattr(obj, attr_name))
             try:
+                if attr_value.startswith('"') and attr_value.endswith('"'):
+                    attr_value = attr_value.strip('"')
                 casted_value = attr_type(attr_value)
                 setattr(obj, attr_name, casted_value)
                 obj.save()
