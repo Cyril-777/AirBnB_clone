@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 result = [str(obj) for obj in storage.all().values()
-                        if isinstance(obj, eval(args[0]))]
+                          if isinstance(obj, eval(args[0]))]
                 print(', '.join(result))
         else:
             result = [str(obj) for obj in storage.all().values()]
