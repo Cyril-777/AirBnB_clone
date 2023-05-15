@@ -171,7 +171,13 @@ class HBNBCommand(cmd.Cmd):
             ins_id = args[1].split('"')[1]
             self.do_destroy("{} {}".format(cn, ins_id))
         elif command == "update":
-            update_args = args[1].split('(')[1].split(')')[0].replace('"', '').split(', ')
+            update_args = (
+                args[1]
+                .split('(')[1]
+                .split(')')[0]
+                .replace('"', '')
+                .split(', ')
+            )
             ins_id = update_args[0]
             att_n = update_args[1]
             att_v = update_args[2]
