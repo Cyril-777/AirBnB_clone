@@ -1,6 +1,6 @@
 Preview tool: use this tool http://htmlpreview.github.io/ and paste the index.html links to preview them
-(WARNING!: images in html files won't show up using this tool!)
----
+(WARNING!: images in html files won't show up if you are using this tool!)
+
 W3C-Validator: use the command $./wc3validator.py [filename]
 
 # AirBnB Clone
@@ -12,7 +12,7 @@ This is a basic AirBnB clone project that demonstrates the implementation of a h
 To view the project, simply open the `index.html` files in a web browser.
 Or use the Preview tool.. http://htmlpreview.github.io/
 
-### Describtion
+## Describtion
 
 - `#_index.html`: HTML files that displays the header, footer, and filters box.
 - `images/`: Folder containing the images for the project.
