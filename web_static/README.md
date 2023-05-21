@@ -1,4 +1,6 @@
 Preview tool: use this tool http://htmlpreview.github.io/ and paste the index.html links to preview them
+(WARNING!: images in html files won't show up using this tool!)
+---
 W3C-Validator: use the command $./wc3validator.py [filename]
 
 # AirBnB Clone
